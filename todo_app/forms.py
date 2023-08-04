@@ -2,7 +2,7 @@ from django import forms
 from django.forms import DateTimeInput
 from django.utils import timezone
 
-from todo_app.models import Task
+from todo_app.models import Task, Tag
 
 
 class TaskCreateForm(forms.ModelForm):
@@ -10,6 +10,10 @@ class TaskCreateForm(forms.ModelForm):
         widget=DateTimeInput(
             attrs={"type": "datetime-local"}),
         initial=timezone.now().replace(second=0, microsecond=0)
+    )
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
     )
 
     class Meta:

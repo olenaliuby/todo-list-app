@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic, View
 
 from todo_app.forms import TaskCreateForm, TaskContentSearchForm
-from todo_app.models import Task
+from todo_app.models import Task, Tag
 
 
 class TaskListView(generic.ListView):
@@ -53,3 +53,25 @@ class TaskCompleteUpdateView(View):
         task.is_done = not task.is_done
         task.save()
         return redirect("todo-app:index")
+
+
+class TagListView(generic.ListView):
+    model = Tag
+    queryset = Tag.objects.all()
+
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("todo-app:tag-list")
+
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("todo-app:tag-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("todo-app:tag-list")
