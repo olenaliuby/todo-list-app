@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
 
-from todo_app.forms import TaskCreateForm
+from todo_app.forms import TaskCreateForm, TaskContentSearchForm
 from todo_app.models import Task
 
 
@@ -9,6 +9,23 @@ class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.prefetch_related("tags")
     template_name = "todo_app/index.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TaskListView, self).get_context_data(**kwargs)
+
+        content = self.request.GET.get("content", "")
+
+        context["search_form"] = TaskContentSearchForm(
+            initial={"content": content}
+        )
+        return context
+
+    def get_queryset(self):
+        form = TaskContentSearchForm(self.request.GET)
+        if form.is_valid():
+            return super().get_queryset().filter(
+                content__icontains=form.cleaned_data["content"]
+            )
 
 
 class TaskCreateView(generic.CreateView):

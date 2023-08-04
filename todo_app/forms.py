@@ -18,7 +18,7 @@ class TaskCreateForm(forms.ModelForm):
 
 
 class TaskContentSearchForm(forms.Form):
-    name = forms.CharField(
+    content = forms.CharField(
         max_length=255,
         required=False,
         label="",
