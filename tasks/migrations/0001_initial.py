@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('deadline', models.DateTimeField(blank=True, null=True)),
                 ('is_done', models.BooleanField(default=False)),
-                ('tags', models.ManyToManyField(related_name='tasks', to='todo_app.tag')),
+                ('tags', models.ManyToManyField(related_name='tasks', to='tasks.tag')),
             ],
             options={
                 'ordering': ['is_done', '-created_at'],

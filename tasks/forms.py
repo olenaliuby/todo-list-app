@@ -2,7 +2,7 @@ from django import forms
 from django.forms import DateTimeInput
 from django.utils import timezone
 
-from todo_app.models import Task, Tag
+from tasks.models import Task, Tag
 
 
 class TaskCreateForm(forms.ModelForm):

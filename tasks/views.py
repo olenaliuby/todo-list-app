@@ -2,14 +2,14 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic, View
 
-from todo_app.forms import TaskCreateForm, TaskContentSearchForm
-from todo_app.models import Task, Tag
+from tasks.forms import TaskCreateForm, TaskContentSearchForm
+from tasks.models import Task, Tag
 
 
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.prefetch_related("tags")
-    template_name = "todo_app/index.html"
+    template_name = "tasks/index.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
