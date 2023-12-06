@@ -1,7 +1,10 @@
 # To-Do List App
 
-> The To-Do List is a simple Django web application that allows users to create, manage, and organize their
-> to-do tasks. It is built using the Django framework and follows the Model-View-Controller (MVC) architectural pattern.
+> The To-Do List is a user-friendly web application designed to streamline task management.
+> Built using the Django framework and adhering to the Model-View-Template (MVT) architectural pattern,
+> it offers a robust platform for creating, organizing, and managing to-do tasks efficiently.
+
+
 
 ## Installing / Getting started
 
